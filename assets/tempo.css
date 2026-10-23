@@ -1,7 +1,11 @@
 /* Tempó Borgarar concept. Every colour is measured from their own menu PDF (Illustrator v2).
    Display: Bangers stands in for CC Zoinks (their menu face, Comicraft licence). Body: Rubik. */
 
-@font-face { font-family: "Bangers"; src: url("fonts/bangers.woff2") format("woff2"); font-display: swap; }
+/* Display = Bangers letters + heavy italic Rubik DIGITS. The Bangers 7 reads as a 1 ("70 g" looked like
+   "10 g"), and their own printed menu sets prices in a plain sans too. 4 KB digits-only subset. */
+@font-face { font-family: "Tempo Display"; src: url("fonts/bangers.woff2") format("woff2"); font-display: swap; }
+/* declared last so it wins over Bangers for 0-9 (overlapping ranges: the last face takes precedence) */
+@font-face { font-family: "Tempo Display"; src: url("fonts/rubik-digits-italic.woff2") format("woff2"); unicode-range: U+0030-0039; font-display: swap; }
 @font-face { font-family: "Rubik"; src: url("fonts/rubik-var.woff2") format("woff2"); font-weight: 300 900; font-display: swap; }
 
 :root {
@@ -26,7 +30,7 @@
   --ease-out: cubic-bezier(.22, 1, .36, 1);
   --ease-press: cubic-bezier(.3, .7, .4, 1);
 
-  --display: "Bangers", "Impact", "Arial Narrow Bold", sans-serif;
+  --display: "Tempo Display", "Impact", "Arial Narrow Bold", sans-serif;
   --body: "Rubik", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
@@ -102,8 +106,8 @@ a, button { touch-action: manipulation; -webkit-tap-highlight-color: rgba(255, 2
 .hero { position: relative; margin-top: -106px; padding: calc(106px + clamp(24px, 4vw, 56px)) var(--gut) clamp(56px, 7vw, 104px); min-height: min(100svh, 900px); display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); align-items: center; gap: clamp(24px, 4vw, 64px); max-width: none; }
 .hero > * { max-width: calc(var(--max) * .6); }
 .hero__copy { justify-self: end; width: 100%; }
-.hero__title { font: 400 clamp(3rem, 4.8vw, 4.75rem)/1 var(--display); letter-spacing: .012em; color: var(--cream); -webkit-text-stroke: .05em var(--ink); paint-order: stroke fill; text-shadow: .05em .06em 0 var(--ink); }
-.hero__title .w { display: block; overflow: hidden; padding: .04em .1em .08em 0; margin-bottom: -.08em; }
+.hero__title { font: 400 clamp(3.2rem, 6vw, 5.6rem)/1 var(--display); letter-spacing: .012em; color: var(--cream); -webkit-text-stroke: .05em var(--ink); paint-order: stroke fill; text-shadow: .05em .06em 0 var(--ink); }
+.hero__title .w { display: block; overflow: hidden; padding: .16em .1em .08em 0; margin: -.12em 0 -.08em; }
 .hero__title .w > span { display: inline-block; white-space: nowrap; }
 .hero__title em { font-style: normal; color: var(--cheese); }
 .hero__sub { margin-top: clamp(18px, 2vw, 26px); max-width: 34ch; font-size: clamp(1.06rem, 1.3vw, 1.25rem); font-weight: 500; }
@@ -307,7 +311,9 @@ html.js:not(.ready) .hero__burger, html.js:not(.ready) .hero__burst, html.js:not
   .foot__social { grid-row: auto; }
 }
 @media (max-width: 520px) {
-  .hero__title { font-size: clamp(2.2rem, 10.9vw, 3.6rem); }
+  .hero__sub { margin-top: 12px; }
+  .hero__cta { margin-top: 16px; }
+  .hero__title { font-size: clamp(2rem, 10.4vw, 3.4rem); }
   .hero__title .w > span { white-space: normal; text-wrap: balance; }
   .hero__cta .btn { flex: 1 1 auto; }
   .switch button { min-width: 0; }
@@ -323,7 +329,7 @@ html.js:not(.ready) .hero__burger, html.js:not(.ready) .hero__burst, html.js:not
   .hero__stage { max-width: max(160px, calc(100svh - 371px)); }
 }
 @media (max-width: 360px) {
-  .hero__title { font-size: 2.1rem; }
+  .hero__title { font-size: 2rem; }
   .hero__cta { gap: 12px; }
   .hero__cta .btn { padding-inline: .8em; }
 }
