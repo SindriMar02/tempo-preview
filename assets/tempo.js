@@ -8,7 +8,8 @@
   const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
   const mix = (a, b, t) => a + (b - a) * t;
   const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-  const isk = new Intl.NumberFormat('is-IS'), fmt = n => isk.format(+n);
+  // Fixed Icelandic grouping (2.590): Intl('is-IS') falls back to 2,590 where the browser lacks the locale data.
+  const fmt = n => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
   const ready = () => root.classList.add('ready');
   setTimeout(ready, 2600); // failsafe: never leave the hero hidden
 
