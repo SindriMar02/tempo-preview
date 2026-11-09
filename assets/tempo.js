@@ -89,15 +89,16 @@
   function intro() {
     if (!G || reduce) { ready(); return; }
     const words = d.querySelectorAll('.hero__title .w > span');
-    const burger = d.querySelector('.hero__burger'), bursty = d.querySelector('.hero__burst'), tag = d.querySelector('.hero__tag');
+    const burger = d.querySelector('.hero__burger'), bursty = d.querySelector('.hero__burst'), tag = d.querySelector('.hero__tag'), rate = d.querySelector('.hero__rate');
     const impact = .62;
-    G.timeline({ onComplete: () => { ready(); G.set([words, burger, bursty, tag, '.hero__sub', '.hero__cta'], { clearProps: 'opacity,transform' }); waveSoon(400); } })
+    G.timeline({ onComplete: () => { ready(); G.set([words, burger, bursty, tag, rate, '.hero__sub', '.hero__cta'], { clearProps: 'opacity,transform' }); waveSoon(400); } })
       .fromTo(words, { yPercent: 105 }, { yPercent: 0, duration: .62, ease: 'power3.out', stagger: .07 }, 0)
       .fromTo(burger, { opacity: 1, yPercent: -95, rotate: -9 }, { yPercent: 0, rotate: 0, duration: .44, ease: 'power2.in' }, impact - .44)
       .to(burger, { scaleY: .84, scaleX: 1.1, duration: .07, ease: 'power1.out' }, impact)
       .to(burger, { scaleY: 1, scaleX: 1, duration: .55, ease: 'elastic.out(1, .7)' }, impact + .07)
       .fromTo(bursty, { opacity: 1, scale: .35, rotate: -24 }, { scale: 1, rotate: 0, duration: .5, ease: 'back.out(2.4)' }, impact)
       .fromTo(tag, { opacity: 0, scale: .4, rotate: -14 }, { opacity: 1, scale: 1, rotate: 8, duration: .38, ease: 'back.out(3)' }, impact + .16)
+      .fromTo(rate, { opacity: 0, scale: .4, rotate: -16 }, { opacity: 1, scale: 1, rotate: -4, duration: .38, ease: 'back.out(3)' }, impact + .34)
       .fromTo(['.hero__sub', '.hero__cta'], { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: .5, ease: 'power3.out', stagger: .08 }, .42);
   }
 
